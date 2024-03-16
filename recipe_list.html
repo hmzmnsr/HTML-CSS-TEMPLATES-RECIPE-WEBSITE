@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipe List</title>
+    <style>
+
+      .menu {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top:10px;
+      }
+      
+      .custom-link {
+        padding: 20px 30px;
+        text-decoration: none;
+        color: #840028;
+        margin-right: 50px;
+        margin-left: 50px;
+        transition: background-color 0.3s, color 0.3s;
+        font-size: 18px;
+      }
+      
+      .custom-link:hover {
+        background-color: #840028;
+        color: #ffffff;
+      }
+      
+      .arrow {
+        display: inline-block;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 5px 4px 0 4px; /* Adjust the border-width for arrow size */
+        border-color: #840028 transparent transparent transparent;
+        margin-left: 5px; /* Adjust the arrow's margin as needed */
+        vertical-align: middle; /* Align the arrow vertically */
+      }
+      
+      /* Change arrow color on hover */
+      .custom-link:hover .arrow {
+        border-color: #ffffff transparent transparent transparent;
+      }
+      
+      /* Dropdown styles */
+      
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+      
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #fff;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        margin-left:35px;
+        text-align: center;
+      }
+      
+      .dropdown-content a {
+        color: #840028;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        transition: background-color 0.3s, color 0.3s;
+      }
+      
+      .dropdown-content a:hover {
+        background-color: #840028;
+        color: #ffffff;
+      }
+      
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+      
+
+
+
+
+
+
+
+
+          .background-div {
+            width: 1000px; /* Set the width as needed */
+            height: 400px; /* Set the height as needed */
+            background-image: url('/static/background.jpg'); /* Replace 'path_to_your_image.jpg' with your image file path */
+            background-size: cover; /* Adjusts the size of the background image to cover the entire div */
+            background-position: center;
+            margin-bottom: 30px; /* Centers the background image */
+            /* You can add other styles such as padding, margin, etc., as per your design requirements */
+          }
+
+          .recipe-button {
+            position: absolute; /* Set button to absolute position */
+            top: 390px; /* Adjust top position */
+            right: 180px; /* Adjust right position */
+            padding: 20px 60px;
+            text-decoration: none;
+            color: white;
+            background-color: #840028;
+            box-shadow: 0 4px 8px rgba(255, 0, 0, 0.3); /* Light red shadow */
+            border-radius: 5px;
+            transition: box-shadow 0.3s ease;
+            font-size: 20px; /* Adding a smooth transition on hover */
+          }
+          
+          .recipe-button:hover {
+            box-shadow: 0 24px 36px #840028; /* Adjusted shadow on hover */
+          }
+
+          .card-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 80px;
+          }
+          
+          .card {
+            position: relative;
+            width: 300px;
+            height: 400px; /* Increased height to accommodate content */
+            background-color: #840028;
+            border-radius: 10px;
+            margin: 0 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+          }
+          
+          .card-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+          }
+          
+          .card-content {
+            padding: 10px;
+            text-align: center;
+            color: #fff;
+            margin-top: 20px
+          }
+          
+          .card-content h3 {
+            margin-bottom: 10px;
+            padding-top: 190px;
+          }
+
+          .small-button {
+            display: inline-block;
+            padding: 12px 35px;
+            text-decoration: none;
+            color: #840028; /* Red text color */
+            background-color: #ffffff; /* White background color */
+            transition: background-color 0.3s, color 0.3s; /* Smooth transition on hover */
+            margin-top:20px;
+          }
+          
+          .small-button:hover {
+            background-color: black; /* Red background color on hover */
+            color: white; /* White text color on hover */
+          }
+
+          /* for Footer */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+.footer {
+  background-color: #840028;
+  color: #fff;
+  padding: 20px 0;
+  height: 330px;
+  margin-top: 100px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-top: 40px;
+  padding-left: 20px
+}
+
+.company-details,
+.social-media,
+.contact-info {
+  flex: 0 0 30%;
+  margin-bottom: 20px;
+}
+.contact-info{
+  padding-left:80px;
+}
+
+.social{
+  padding-left:40px;
+}
+
+.social-media img {
+  margin-right: 20px;
+  text-align: center;
+}
+
+.contact-info ul {
+  list-style: none;
+  padding: 0;
+}
+
+.contact-info ul li {
+  margin-bottom: 5px;
+}
+.texts{
+  font-family:  'Cinzel Decorative', cursive;"
+}
+
+.logo1{
+  height: 60px;
+  width: 60px;
+  margin-bottom: 0px;
+  margin-right:30px
+  
+}
+.logo2{
+  height: 40px;
+  width: 40px;
+  margin-bottom:10px;
+  margin-right:30px;
+}
+.logo3{
+  height: 40px;
+  width: 70px;
+  margin-bottom:5px;
+  margin-right:30px;
+}
+.logo4{
+  height: 50px;
+  width: 60px;
+  margin-bottom:5px;
+  margin-right:30px
+}
+.follow{
+  margin-bottom:20px;
+  margin-left:10px;
+  font-size: 25px;
+  font-family:  'Cinzel Decorative', cursive;"
+}
+.about{
+  margin-right:35px;
+  margin-bottom:25px;
+  font-size: 25px;
+  font-family:  'Cinzel Decorative', cursive;"
+}
+.contact{
+  margin-right:35px;
+  margin-bottom:20px;
+  font-size: 25px;
+  font-family:  'Cinzel Decorative', cursive;"
+} 
+
+
+
+
+
+
+.background-image {
+  margin-top:100px;
+  width: 100%;
+  height: 500px;
+  background-image: url('/static/foodbackground.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.newsletter-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width:100%;
+  height: 500px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  text-align: center;
+}
+
+.signup{
+  margin-top: 120px;
+  font-size: 60px;
+  font-family: 'Segoe Script', cursive;
+}
+
+.email{
+  margin-top: 30px;
+  padding: 14px;
+  width: 550px;
+  height: 55px;
+  font-size: 15px;
+  border-radius: 40px;
+}
+
+.email:focus{
+  outline: none;
+  
+}
+
+.emailbutton{
+  border-radius: 40px;
+  font-size:15px;
+  margin-top: 20px; 
+  background-color: black;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  padding: 15px 50px;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition on hover */
+
+}
+
+.emailbutton:hover{
+  background-color: red; /* Red background color on hover */
+  color: white;
+}
+
+
+
+
+
+
+
+.container {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+  margin-bottom: 250px;
+}
+
+.square {
+  width: 450px;
+  height: 300px;
+  position: relative;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.square2{
+  width: 450px;
+  height: 300px;
+  position: relative;
+  top:70px;
+  background-color: #F7C4BE;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  
+}
+
+.square3{
+  width: 450px;
+  height: 300px;
+  position: relative;
+  top:140px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  
+}
+
+.smoothies{
+  width: 450px;
+  height: 300px;
+}
+
+.content {
+  text-align: center;
+  padding: 20px;
+}
+
+.buttonshake {
+  margin-top: 10px;
+  padding: 10px 25px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.buttonshake:hover{
+  background-color:red;
+  color:white;
+}
+.squaretext{
+  font-size:50px;
+  font-family: 'Segoe Script', cursive;
+}
+.squaretext2{
+  font-size:16px;
+  font-family: 'Segoe Script', cursive;
+}
+
+
+
+
+
+        
+          
+    </style>
+</head>
+<body>
+         <!-- Navbar -->
+           <div class="menu">
+            <a href="/recipe_list" class="custom-link">Home</a>
+             <div class="dropdown">
+            <a href="/recipestwo" class="custom-link dropdown-link">
+            Recipes <span class="arrow"></span>
+            </a>
+            <div class="dropdown-content">
+            <a href="/recipestwo">Desi Food</a>
+            <a href="/italian">Italian Food</a>
+            <a href="/continental">Continental Food</a>
+            <a href="/fastfood">Fast Food</a>
+            </div>
+           </div>
+            <a href="/blog" class="custom-link">Blog</a>
+            <img src="/static/logo.PNG" alt="Logo" style="width: 180px; height: 180px; margin-left: 40px; margin-right: 40px;">
+            <a href="/contact" class="custom-link">Contact</a>
+            <a href="/about" class="custom-link">About</a>
+            <a href="/shop" class="custom-link">Shop</a>
+          </div>
+
+
+          <!-- Button with background image -->
+          <div class="background-div">
+            <a href="/recipestwo" class="recipe-button">Recipes</a>
+          </div>
+
+
+          <!-- Cards -->
+          <div class="card-container">
+            <div class="card">
+              <img src="static\desi.jpg" alt="Image 1" class="card-image">
+              <div class="card-content">
+                <h3>Desi Cuisine</h3>
+                <p>Desi cuisine is renowned for its rich and diverse flavors. It includes a wide array of dishes varying from aromatic aromas.</p>
+                <a href="/recipestwo" class="small-button"><b>View More</b></a>
+              </div>
+            </div>
+            <div class="card">
+              <img src="static\burger.jpg" alt="Image 2" class="card-image">
+              <div class="card-content">
+                <h3>Fast Food</h3>
+                <p>Fast food is known for its quick service and convenience. Fast food items are often easy to prepare, and quick meal option</p>
+                <a href="/fastfood" class="small-button"><b>View More</b></a>
+              </div>
+            </div>
+            <div class="card">
+                <img src="static\italian.jpg" alt="Image 2" class="card-image">
+                <div class="card-content">
+                  <h3>Italian Cuisine</h3>
+                  <p>Italian cuisine is known for its rich flavors and diverse regional dishes. It includes a variety of dishes.</p>
+                  <a href="/italian" class="small-button"><b>View More</b></a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="static\steak.jpg" alt="Image 2" class="card-image">
+                <div class="card-content">
+                  <h3>Continental Cuisine</h3>
+                  <p>Continental cuisine is a diverse mix of flavors and dishes from various European countries.</p>
+                  <a href="/continental" class="small-button"><b>View More</b></a>
+                </div>
+            </div>
+          </div>
+
+
+
+          <div class="container">
+            <div class="square">
+              <img src="/static/smoothie.jpg" class="smoothies" alt="Image"/>
+            </div>
+            <div class="square2">
+              <div class="content">
+                <p class="squaretext">Desserts</p>
+                <p class="squaretext2">Discover a treasure trove of recipes that span the spectrum of sweetness. From luscious cakes and creamy puddings to tantalizing tarts and crispy cookies, our recipes cater to both novice bakers and seasoned dessert enthusiasts.</p>
+                <button class="buttonshake">View More</button>
+              </div>
+            </div>
+            <div class="square3">
+              <img src="/static/icecream.jpg" class="smoothies" alt="Image"/>
+            </div>
+          </div>
+          
+
+
+          <div class="background-image">
+            <div class="newsletter-form">
+              <h2 class="signup">Sign Up for Our Newsletter</h2>
+              <form action="#" method="post">
+                <input type="email" class="email"placeholder="Enter your email" required>
+                <br>
+                <button type="submit" class="emailbutton">Submit</button>
+              </form>
+            </div>
+          </div>
+
+          {% comment %} <ul style="list-style-type: none; padding: 0; margin: 0;">
+            <!-- Your recipe list content -->
+            <!-- Use your server-side template engine syntax to loop through recipes -->
+            {% for recipe in recipes %}
+                <li style="margin-bottom: 20px; border: 1px solid #ccc; padding: 10px; border-radius: 5px;">
+                    <div style="font-size: 1.5em; margin-bottom: 5px;">{{ recipe.title }}</div>
+                    <div style="font-style: italic; margin-bottom: 10px;">{{ recipe.description }}</div>
+                    <div style="color: #777;">
+                        <p><strong>Ingredients:</strong> {{ recipe.ingredients }}</p>
+                        <p><strong>Instructions:</strong> {{ recipe.instructions }}</p>
+                        <p><strong>Created by:</strong> {{ recipe.created_by.username }}</p>
+                        <p><strong>Created at:</strong> {{ recipe.created_at }}</p>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul> {% endcomment %}
+
+
+      <!-- Footer -->
+      <div class="main">
+      <div class="footer">
+        <div class="footer-content">
+
+          <div class="company-details">
+            <h3 class="about">About Us</h3>
+            <p class="texts">At FlavourFusionHub, we are passionate about cooking, sharing, and savoring delicious flavors from around the world. Our mission is to provide a diverse collection of recipes, catering to both novice cooks and seasoned chefs, all while celebrating the joy of creating exceptional meals.</p>
+          </div>
+
+
+          <div class="social">
+            <h3 class="follow">Follow Us</h3>
+            <a href="https://www.facebook.com/yourpage" target="_blank"><img src="static/facebook1.png" class="logo1"alt="Facebook"></a>
+            <a href="https://www.twitter.com/yourpage" target="_blank"><img src="static/insta1.png" class="logo2"alt="Twitter"></a>
+            <a href="https://www.instagram.com/yourpage" target="_blank"><img src="static/twitter1.png" class="logo3"alt="Instagram"></a>
+            <a href="https://www.instagram.com/yourpage" target="_blank"><img src="static/gmail1.png" class="logo4"alt="Instagram"></a>
+          </div>
+
+
+          <div class="contact-info">
+            <h3 class="contact">Contact Us</h3>
+            <ul>
+              <li class="texts">Location: Lahore, Pakistan</li>
+              <li class="texts">Phone: +93244558915</li>
+              <li class="texts">Email: Hamza@flavourfusionhub.com</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+      </div>
+
+          
+</body>
+</html>
